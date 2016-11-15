@@ -16,4 +16,4 @@
 * Download and add the GoogleService-Info.plist for your application.
 * Remove the original GoogleService-Info.plist in the project file by deleting it and replacing it with your own.
 
-**Not using your own GoogleService-Info.plist file will result in not being able to control and use your database as this application is using my own database on Firebase!*
+**Not using your own GoogleService-Info.plist file will result in not being able to control and use your database as this application is using my own database on Firebase!**
