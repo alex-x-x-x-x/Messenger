@@ -14,4 +14,6 @@
 * Create a new project in your Firebase console (console.firebase.google.com).
 * Add Firebase to your iOS app by following the directions in the 'Project Settings Tab'.
 * Download and add the GoogleService-Info.plist for your application.
-* Remove the original GoogleService-Info.plist file by deleting it and replacing it with your own.
+* Remove the original GoogleService-Info.plist in the project file by deleting it and replacing it with your own.
+
+**Not using your own GoogleService-Info.plist file will result in not being able to control and use your database as this application is using my own database on Firebase!*
