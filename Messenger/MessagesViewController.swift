@@ -15,21 +15,14 @@ class MessagesViewController:  JSQMessagesViewController {
     
     var user: FIRAuth?
     var messages = [JSQMessage]()
-    
-    
     var messageRef: FIRDatabaseReference!
-    
-    let defaults = NSUserDefaults.standardUserDefaults()
-    
     var incomingBubbleImageView: JSQMessagesBubbleImage!
     var outgoingBubbleImageView: JSQMessagesBubbleImage!
     var usersTypingQuery: FIRDatabaseQuery!
-    
+    let defaults = NSUserDefaults.standardUserDefaults()
     
     @IBOutlet var MessageView: UIView!
-    
-    
-    
+
     var userIsTypingRef: FIRDatabaseReference! // 1
     private var localTyping = false
     var isTyping: Bool {
@@ -45,16 +38,11 @@ class MessagesViewController:  JSQMessagesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
         self.senderId = UIDevice.currentDevice().identifierForVendor?.UUIDString
         self.senderDisplayName = UIDevice.currentDevice().identifierForVendor?.UUIDString
-        
+        self.inputToolbar.contentView.leftBarButtonItem = nil
         collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero;
         collectionView.collectionViewLayout.incomingAvatarViewSize = CGSizeZero;
-        
-        self.inputToolbar.contentView.leftBarButtonItem = nil
         
         messageRef = FIRDatabase.database().reference()
         observeMessages()
@@ -64,13 +52,11 @@ class MessagesViewController:  JSQMessagesViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         collectionView.collectionViewLayout.springinessEnabled = true
-        
         observeTyping()
     }
     
     private func setupBubbles() {
         let factory = JSQMessagesBubbleImageFactory()
-        
         outgoingBubbleImageView = factory.outgoingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleRedColor())
         incomingBubbleImageView = factory.incomingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleBlueColor())
     }
@@ -81,20 +67,13 @@ class MessagesViewController:  JSQMessagesViewController {
         messages.append(message)
     }
     
-    
     private func observeMessages() {
         let messagesQuery = messageRef.queryLimitedToLast(25)
-        
         messagesQuery.observeEventType(.ChildAdded) { (snapshot: FIRDataSnapshot!) in
-            
             if let id = snapshot.value!["senderId"] as? String, text = snapshot.value!["text"] as? String {
-
-            
             self.addMessage(id, text: text)
             self.finishReceivingMessage()
         }
-        
-     
     }
         
 }
@@ -143,7 +122,6 @@ class MessagesViewController:  JSQMessagesViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         return messages.count
         
     }
@@ -184,7 +162,6 @@ class MessagesViewController:  JSQMessagesViewController {
         
         return cell
     }
-    
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAtIndexPath indexPath: NSIndexPath) -> JSQMessageAvatarImageDataSource! {
         
