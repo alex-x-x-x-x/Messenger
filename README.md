@@ -9,3 +9,9 @@
 * JSQMessagesViewController(7.3.4)
 * Firebase/Database (3.0.2)
 * Firebase/Auth (3.0.4)
+
+# Using Firebase in your project:
+* Create a new project in your Firebase console (console.firebase.google.com).
+* Add Firebase to your iOS app by following the directions in the 'Project Settings Tab'.
+* Download and add the GoogleService-Info.plist for your application.
+* Remove the original GoogleService-Info.plist file by deleting it and replacing it with your own.
