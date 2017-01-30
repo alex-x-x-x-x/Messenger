@@ -11,10 +11,10 @@
 		556399091D624DEA00EA150A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 556399071D624DEA00EA150A /* Main.storyboard */; };
 		5563990B1D624DEA00EA150A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5563990A1D624DEA00EA150A /* Assets.xcassets */; };
 		5563990E1D624DEA00EA150A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5563990C1D624DEA00EA150A /* LaunchScreen.storyboard */; };
-		556399161D624E9600EA150A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 556399151D624E9600EA150A /* GoogleService-Info.plist */; };
 		55C154491D624FF500BC7900 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C154481D624FF500BC7900 /* MessagesViewController.swift */; };
 		55C1544B1D62505700BC7900 /* JSQSystemSoundPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55C1544A1D62505700BC7900 /* JSQSystemSoundPlayer.framework */; };
 		55C1544D1D62506200BC7900 /* JSQMessagesViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55C1544C1D62506200BC7900 /* JSQMessagesViewController.framework */; };
+		C2FB5B591E4002FB00A04C69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C2FB5B581E4002FB00A04C69 /* GoogleService-Info.plist */; };
 		E4BB7AC93DAB16683898DC75 /* Pods_Messenger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65491DF3D4ADCBB9FCEE1810 /* Pods_Messenger.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,13 +26,13 @@
 		5563990A1D624DEA00EA150A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5563990D1D624DEA00EA150A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5563990F1D624DEA00EA150A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		556399151D624E9600EA150A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		55C154471D624F7100BC7900 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		55C154481D624FF500BC7900 /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		55C1544A1D62505700BC7900 /* JSQSystemSoundPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JSQSystemSoundPlayer.framework; path = "../../../Library/Developer/Xcode/DerivedData/Messenger-bceapxoagtdewyckarmtikdieatb/Build/Products/Debug-iphonesimulator/JSQSystemSoundPlayer/JSQSystemSoundPlayer.framework"; sourceTree = "<group>"; };
 		55C1544C1D62506200BC7900 /* JSQMessagesViewController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JSQMessagesViewController.framework; path = "../../../Library/Developer/Xcode/DerivedData/Messenger-bceapxoagtdewyckarmtikdieatb/Build/Products/Debug-iphonesimulator/JSQMessagesViewController/JSQMessagesViewController.framework"; sourceTree = "<group>"; };
 		601684665A8A934A7A247F15 /* Pods-Messenger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messenger.release.xcconfig"; path = "Pods/Target Support Files/Pods-Messenger/Pods-Messenger.release.xcconfig"; sourceTree = "<group>"; };
 		65491DF3D4ADCBB9FCEE1810 /* Pods_Messenger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Messenger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2FB5B581E4002FB00A04C69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,7 +77,7 @@
 				5563990A1D624DEA00EA150A /* Assets.xcassets */,
 				5563990C1D624DEA00EA150A /* LaunchScreen.storyboard */,
 				5563990F1D624DEA00EA150A /* Info.plist */,
-				556399151D624E9600EA150A /* GoogleService-Info.plist */,
+				C2FB5B581E4002FB00A04C69 /* GoogleService-Info.plist */,
 			);
 			path = Messenger;
 			sourceTree = "<group>";
@@ -136,7 +136,8 @@
 				TargetAttributes = {
 					556398FF1D624DE900EA150A = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 96WWRDHWSW;
+						DevelopmentTeam = NN3TD9EB8G;
+						LastSwiftMigration = 0820;
 					};
 				};
 			};
@@ -164,7 +165,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5563990E1D624DEA00EA150A /* LaunchScreen.storyboard in Resources */,
-				556399161D624E9600EA150A /* GoogleService-Info.plist in Resources */,
+				C2FB5B591E4002FB00A04C69 /* GoogleService-Info.plist in Resources */,
 				5563990B1D624DEA00EA150A /* Assets.xcassets in Resources */,
 				556399091D624DEA00EA150A /* Main.storyboard in Resources */,
 			);
@@ -200,7 +201,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		41446929AD46105CC1A57B09 /* [CP] Copy Pods Resources */ = {
@@ -342,12 +343,13 @@
 			baseConfigurationReference = 34730CC674957914A94394BC /* Pods-Messenger.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = NN3TD9EB8G;
 				INFOPLIST_FILE = Messenger/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.safinalifa.Messenger;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lfarah.messenger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -356,12 +358,13 @@
 			baseConfigurationReference = 601684665A8A934A7A247F15 /* Pods-Messenger.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = NN3TD9EB8G;
 				INFOPLIST_FILE = Messenger/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.safinalifa.Messenger;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lfarah.messenger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
