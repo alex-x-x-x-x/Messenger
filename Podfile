@@ -6,6 +6,7 @@ target 'Messenger' do
 
   # Pods for Messenger
 pod 'JSQMessagesViewController'
+pod 'Firebase/Core'
 pod 'Firebase/Database'
 pod 'Firebase/Auth'
 

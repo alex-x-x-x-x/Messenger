@@ -19,12 +19,12 @@ class MessagesViewController:  JSQMessagesViewController {
     var incomingBubbleImageView: JSQMessagesBubbleImage!
     var outgoingBubbleImageView: JSQMessagesBubbleImage!
     var usersTypingQuery: FIRDatabaseQuery!
-    let defaults = NSUserDefaults.standardUserDefaults()
+    let defaults = UserDefaults.standard
     
     @IBOutlet var MessageView: UIView!
 
     var userIsTypingRef: FIRDatabaseReference! // 1
-    private var localTyping = false
+    fileprivate var localTyping = false
     var isTyping: Bool {
         get {
             return localTyping
@@ -38,70 +38,70 @@ class MessagesViewController:  JSQMessagesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.senderId = UIDevice.currentDevice().identifierForVendor?.UUIDString
-        self.senderDisplayName = UIDevice.currentDevice().identifierForVendor?.UUIDString
+        self.senderId = UIDevice.current.identifierForVendor?.uuidString
+        self.senderDisplayName = UIDevice.current.identifierForVendor?.uuidString
         self.inputToolbar.contentView.leftBarButtonItem = nil
-        collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero;
-        collectionView.collectionViewLayout.incomingAvatarViewSize = CGSizeZero;
+        collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSize.zero;
+        collectionView.collectionViewLayout.incomingAvatarViewSize = CGSize.zero;
         
         messageRef = FIRDatabase.database().reference()
         observeMessages()
         setupBubbles()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         collectionView.collectionViewLayout.springinessEnabled = true
         observeTyping()
     }
     
-    private func setupBubbles() {
+    fileprivate func setupBubbles() {
         let factory = JSQMessagesBubbleImageFactory()
-        outgoingBubbleImageView = factory.outgoingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleRedColor())
-        incomingBubbleImageView = factory.incomingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleBlueColor())
+        outgoingBubbleImageView = factory?.outgoingMessagesBubbleImage(with: UIColor.jsq_messageBubbleRed())
+        incomingBubbleImageView = factory?.incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleBlue())
     }
     
     
-    func addMessage(id: String, text: String) {
+    func addMessage(_ id: String, text: String) {
         let message = JSQMessage(senderId: id, displayName: "", text: text)
-        messages.append(message)
+        messages.append(message!)
     }
     
-    private func observeMessages() {
-        let messagesQuery = messageRef.queryLimitedToLast(25)
-        messagesQuery.observeEventType(.ChildAdded) { (snapshot: FIRDataSnapshot!) in
-            if let id = snapshot.value!["senderId"] as? String, text = snapshot.value!["text"] as? String {
+    fileprivate func observeMessages() {
+        let messagesQuery = messageRef.queryLimited(toLast: 25)
+        messagesQuery.observe(.childAdded) { (snapshot: FIRDataSnapshot!) in
+            if let value = snapshot.value as? [String:AnyObject], let id = value["senderId"] as? String, let text = value["text"] as? String {
             self.addMessage(id, text: text)
             self.finishReceivingMessage()
         }
     }
         
 }
-    override func textViewDidChange(textView: UITextView) {
+    override func textViewDidChange(_ textView: UITextView) {
         super.textViewDidChange(textView)
         // If the text is not empty, the user is typing
         print(textView.text != "")
         isTyping = textView.text != ""
     }
     
-    private func observeTyping() {
+    fileprivate func observeTyping() {
         let typingIndicatorRef = FIRDatabase.database().reference().child("typingIndicator")
         userIsTypingRef = typingIndicatorRef.child(senderId)
         userIsTypingRef.onDisconnectRemoveValue()
         
-        usersTypingQuery = typingIndicatorRef.queryOrderedByValue().queryEqualToValue(true)
+        usersTypingQuery = typingIndicatorRef.queryOrderedByValue().queryEqual(toValue: true)
         
-        usersTypingQuery.observeEventType(.Value) { (data: FIRDataSnapshot!) in
+        usersTypingQuery.observe(.value) { (data: FIRDataSnapshot!) in
             
             if data.childrenCount == 1 && self.isTyping {
                 return
             }
             
             self.showTypingIndicator = data.childrenCount > 0
-            self.scrollToBottomAnimated(true)
+            self.scrollToBottom(animated: true)
         }
     }
-    override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
+    override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
         
         let itemRef = messageRef.childByAutoId()
         let messageItem = [
@@ -116,28 +116,28 @@ class MessagesViewController:  JSQMessagesViewController {
         isTyping = false
     }
     
-    override func didPressAccessoryButton(sender: UIButton!) {
+    override func didPressAccessoryButton(_ sender: UIButton!) {
         // Leave blank
         
     }
     
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return messages.count
         
     }
     
-    override func collectionView(collectionView: JSQMessagesCollectionView!, messageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageData! {
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageDataForItemAt indexPath: IndexPath!) -> JSQMessageData! {
         
         let data = self.messages[indexPath.row]
         return data
         
     }
     
-    override func collectionView(collectionView: JSQMessagesCollectionView!, didDeleteMessageAtIndexPath indexPath: NSIndexPath!) {
-        self.messages.removeAtIndex(indexPath.row)
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, didDeleteMessageAt indexPath: IndexPath!) {
+        self.messages.remove(at: indexPath.row)
     }
     
-    override func collectionView(collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageBubbleImageDataSource! {
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAt indexPath: IndexPath!) -> JSQMessageBubbleImageDataSource! {
         
         let data = messages[indexPath.row]
         switch(data.senderId) {
@@ -148,22 +148,22 @@ class MessagesViewController:  JSQMessagesViewController {
         }
     }
     
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = super.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as! JSQMessagesCollectionViewCell
+        let cell = super.collectionView(collectionView, cellForItemAt: indexPath) as! JSQMessagesCollectionViewCell
         
         let message = messages[indexPath.item]
         
         if message.senderId == senderId {
-            cell.textView!.textColor = UIColor.whiteColor()
+            cell.textView!.textColor = UIColor.white
         } else {
-            cell.textView!.textColor = UIColor.whiteColor()
+            cell.textView!.textColor = UIColor.white
         }
         
         return cell
     }
     
-    override func collectionView(collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAtIndexPath indexPath: NSIndexPath) -> JSQMessageAvatarImageDataSource! {
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAt indexPath: IndexPath) -> JSQMessageAvatarImageDataSource! {
         
         return nil
     }
