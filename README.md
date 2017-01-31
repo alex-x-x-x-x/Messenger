@@ -1,7 +1,7 @@
 # Messenger
 **JSQMessagesViewController** and **Firebase** combined to create a real-time database messenger.
 
-* This project utilizes Firebase v 3.4.0
+* This project utilizes Firebase version 3.11.1
 
 **Use Swift Legacy Language Version**
 
