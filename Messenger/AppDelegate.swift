@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  Messenger
 //
-//  Created by Safina Lifa on 8/15/16.
-//  Copyright © 2016 Safina Lifa. All rights reserved.
+//  Created by Alexandra Lifa on 8/15/16.
+//  Copyright © 2016 Alexandra Lifa. All rights reserved.
 //
 
 import UIKit
@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         FIRApp.configure()

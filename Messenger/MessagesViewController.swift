@@ -2,8 +2,8 @@
 //  MessagesViewController.swift
 //  Messenger
 //
-//  Created by Safina Lifa on 8/15/16.
-//  Copyright © 2016 Safina Lifa. All rights reserved.
+//  Created by Alexandra Lifa on 8/15/16.
+//  Copyright © 2016 Alexandra Lifa. All rights reserved.
 //
 import UIKit
 import JSQMessagesViewController
