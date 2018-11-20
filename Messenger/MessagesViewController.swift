@@ -5,10 +5,10 @@
 //  Created by Alexandra Lifa on 8/15/16.
 //  Copyright © 2016 Alexandra Lifa. All rights reserved.
 //
+
 import UIKit
 import JSQMessagesViewController
 import Firebase
-
 
 
 class MessagesViewController:  JSQMessagesViewController {
@@ -19,12 +19,12 @@ class MessagesViewController:  JSQMessagesViewController {
     var incomingBubbleImageView: JSQMessagesBubbleImage!
     var outgoingBubbleImageView: JSQMessagesBubbleImage!
     var usersTypingQuery: FIRDatabaseQuery!
-    let defaults = UserDefaults.standard
     
+    let defaults = UserDefaults.standard
     @IBOutlet var MessageView: UIView!
-
-    var userIsTypingRef: FIRDatabaseReference! // 1
+    var userIsTypingRef: FIRDatabaseReference!
     fileprivate var localTyping = false
+    
     var isTyping: Bool {
         get {
             return localTyping
@@ -34,13 +34,14 @@ class MessagesViewController:  JSQMessagesViewController {
             userIsTypingRef.setValue(newValue)
         }
     }
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.senderId = UIDevice.current.identifierForVendor?.uuidString
         self.senderDisplayName = UIDevice.current.identifierForVendor?.uuidString
         self.inputToolbar.contentView.leftBarButtonItem = nil
+        
         collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSize.zero;
         collectionView.collectionViewLayout.incomingAvatarViewSize = CGSize.zero;
         
@@ -51,12 +52,15 @@ class MessagesViewController:  JSQMessagesViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         collectionView.collectionViewLayout.springinessEnabled = true
+        
         observeTyping()
     }
     
     fileprivate func setupBubbles() {
         let factory = JSQMessagesBubbleImageFactory()
+        
         outgoingBubbleImageView = factory?.outgoingMessagesBubbleImage(with: UIColor.jsq_messageBubbleRed())
         incomingBubbleImageView = factory?.incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleBlue())
     }
@@ -65,6 +69,7 @@ class MessagesViewController:  JSQMessagesViewController {
     func addMessage(_ id: String, text: String) {
         let message = JSQMessage(senderId: id, displayName: "", text: text)
         messages.append(message!)
+    
     }
     
     fileprivate func observeMessages() {
@@ -85,12 +90,13 @@ class MessagesViewController:  JSQMessagesViewController {
     }
     
     fileprivate func observeTyping() {
+        
         let typingIndicatorRef = FIRDatabase.database().reference().child("typingIndicator")
+        
         userIsTypingRef = typingIndicatorRef.child(senderId)
         userIsTypingRef.onDisconnectRemoveValue()
         
         usersTypingQuery = typingIndicatorRef.queryOrderedByValue().queryEqual(toValue: true)
-        
         usersTypingQuery.observe(.value) { (data: FIRDataSnapshot!) in
             
             if data.childrenCount == 1 && self.isTyping {
@@ -101,8 +107,9 @@ class MessagesViewController:  JSQMessagesViewController {
             self.scrollToBottom(animated: true)
         }
     }
+    
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
-        
+    
         let itemRef = messageRef.childByAutoId()
         let messageItem = [
             "text": text,
@@ -116,12 +123,8 @@ class MessagesViewController:  JSQMessagesViewController {
         isTyping = false
     }
     
-    override func didPressAccessoryButton(_ sender: UIButton!) {
-        // Leave blank
-        
-    }
-    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         return messages.count
         
     }
