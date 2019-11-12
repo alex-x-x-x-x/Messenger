@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  Messenger
 //
-//  Created by Alexandra Lifa on 8/15/16.
-//  Copyright © 2016 Alexandra Lifa. All rights reserved.
+//  Created by Alexandra Lifa on 11/12/19.
+//  Copyright © 2019 Alexandra Lifa. All rights reserved.
 //
 
 import UIKit
